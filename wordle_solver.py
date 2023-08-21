@@ -25,7 +25,7 @@ def main():
     input_words = list()
     input_word = None
 
-    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    alphabet = "qwertzuiopasdfghjklyxcvbnm"
 
     if args.language == "de":
         alphabet += "äöü"
@@ -82,6 +82,9 @@ def main():
         for letter, idx in correct_letters_wrong_location:
             if word[idx] == letter:
                 return False
+
+        if not set([letter for letter, idx in correct_letters_wrong_location]).issubset(set(word)):
+            return False
 
         if not set(word).issubset(set(alphabet)):
             return False
