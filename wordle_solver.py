@@ -25,6 +25,8 @@ def main():
     input_words = list()
     input_word = None
 
+    alphabet = list("abcdefghijklmnopqrstuvwxyz")
+
     print("-"*50)
     print("WORDLE SOLVER")
     print("-"*50)
@@ -57,6 +59,9 @@ def main():
                 correct_letters_right_location.append((word[idx], idx))
             if p == "o":
                 correct_letters_wrong_location.append(word[idx])
+            if p == "-":
+                if word[idx] in alphabet:
+                    alphabet.remove(word[idx])
 
     correct_letters_right_location = set(correct_letters_right_location)
     correct_letters_wrong_location = set(correct_letters_wrong_location)
@@ -70,7 +75,7 @@ def main():
             if word[idx] != letter:
                 match = False
 
-        if not correct_letters_wrong_location.issubset(set(word)):
+        if not correct_letters_wrong_location.issubset(set(word)) or not set(word).issubset(set(alphabet)):
             match = False
 
         if match:
@@ -79,6 +84,8 @@ def main():
     print("-"*50)
     print("SOLUTION")
     print("-"*50)
+
+    print("Using alphabet:", [alpha.upper() for alpha in alphabet])
 
     for word in sorted(possible_words):
         print(word.upper())
