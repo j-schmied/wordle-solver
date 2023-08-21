@@ -3,10 +3,11 @@
 ## Links
 
 * [Wordle (DE)](https://wordle.at/)
-* [Dordle (DE)](https://dordlewordle.com)
-* [Quordle (DE)](https://quordlewordle.com)
-* [Octordle (DE)](https://octordlewordle.com)
-* [Sedecordle (DE)](https://sedecordlegame.com)
+* [Dordle](https://dordlewordle.com)
+* [Quordle](https://quordlewordle.com)
+* [Octordle](https://octordlewordle.org/)
+* [Sedecordle](https://sedecordlegame.org/)
+* [Spelling Bee (DE)](https://6mal5.com/wortify/)
 * [Spelling Bee (EN)](https://spellsbee.com/)
 * [Worldle (EN)](https://worldlegame.io/)
 * [Globle (EN)](https://globle.org/)
