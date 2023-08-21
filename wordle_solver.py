@@ -25,7 +25,12 @@ def main():
     input_words = list()
     input_word = None
 
-    alphabet = list("abcdefghijklmnopqrstuvwxyz")
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+    if args.language == "de":
+        alphabet += "äöü"
+
+    alphabet = list(alphabet)
 
     print("-"*50)
     print("WORDLE SOLVER")
