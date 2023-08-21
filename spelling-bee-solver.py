@@ -1,29 +1,33 @@
 import argparse
 import keyboard
+import os
 import time
 
 
-def load_words():
-    with open("./word_lists/en.txt") as word_file:
-        valid_words = set(word_file.read().split())
+def load_words(language: str):
+    word_file = "de.txt" if language == "de" else "en.txt"
+
+    with open(os.path.join("word_lists", word_file)) as _word_file:
+        valid_words = set(_word_file.read().split())
 
     return valid_words
 
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--definitive", "-d", type=str, required=True)
-    parser.add_argument("--letters", "-l", type=str, required=True)
+    parser.add_argument("--definitive", "-d", help="Specfiy a letter that must occur in the word", type=str, required=True)
+    parser.add_argument("--letters", "-l", help="Specify letters that can occur in the word", type=str, required=True)
+    parser.add_argument("--language", "-L", type=str, choices=["en", "de"], default="en")
     parser.add_argument("--autosolve", action="store_true")
     return parser.parse_args()
 
 
 def main():
-    english_words = load_words()
     args = parse_args()
+    english_words = load_words(args.language)
 
-    definitive: str = args.definitive
-    letters: list = sorted(list(args.letters))
+    definitive: str = args.definitive.lower()
+    letters: list = sorted(list(args.letters.lower()))
     letters.append(definitive)
 
     valid_word = list()
