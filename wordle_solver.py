@@ -69,20 +69,22 @@ def main():
     # Filter words
     possible_words = list()
 
-    for word in valid_words:
-        match = True
+    def word_is_valid(word):
         for letter, idx in correct_letters_right_location:
             if word[idx] != letter:
-                match = False
+                return False
 
         for letter, idx in correct_letters_wrong_location:
             if word[idx] == letter:
-                match = False
+                return False
 
         if not set(word).issubset(set(alphabet)):
-            match = False
+            return False
 
-        if match:
+        return True
+
+    for word in valid_words:
+        if word_is_valid(word):
             possible_words.append(word)
 
     print("-"*50)
