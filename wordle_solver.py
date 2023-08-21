@@ -8,7 +8,7 @@ def load_words(language: str, length: int):
     with open(os.path.join("word_lists", word_file)) as _word_file:
         valid_words = set(_word_file.read().split())
 
-    return [word for word in valid_words if len(word) == length]
+    return [word.lower() for word in valid_words if len(word) == length]
 
 
 def parse_args():
@@ -41,7 +41,7 @@ def main():
         input_word = input()
 
         if input_word != "":
-            input_words.append(input_word)
+            input_words.append(input_word.lower())
 
     # Parse input words
     correct_letters_right_location = list()
@@ -58,7 +58,7 @@ def main():
             if p == "x":
                 correct_letters_right_location.append((word[idx], idx))
             if p == "o":
-                correct_letters_wrong_location.append(word[idx])
+                correct_letters_wrong_location.append((word[idx], idx))
             if p == "-":
                 if word[idx] in alphabet:
                     alphabet.remove(word[idx])
@@ -75,14 +75,18 @@ def main():
             if word[idx] != letter:
                 match = False
 
-        if not correct_letters_wrong_location.issubset(set(word)) or not set(word).issubset(set(alphabet)):
+        for letter, idx in correct_letters_wrong_location:
+            if word[idx] == letter:
+                match = False
+
+        if not set(word).issubset(set(alphabet)):
             match = False
 
         if match:
             possible_words.append(word)
 
     print("-"*50)
-    print("SOLUTION")
+    print("POSSIBLE SOLUTIONS")
     print("-"*50)
 
     print("Using alphabet:", [alpha.upper() for alpha in alphabet])
