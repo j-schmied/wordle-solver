@@ -25,7 +25,7 @@ def main():
     input_words = list()
     input_word = None
 
-    alphabet = "qwertzuiopasdfghjklyxcvbnm"
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
 
     if args.language == "de":
         alphabet += "äöü"
