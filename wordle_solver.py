@@ -62,10 +62,20 @@ def main():
 
             if p == "x":
                 correct_letters_right_location.append((word[idx], idx))
+
+                # Re-add mistakingly removed letters
+                if word[idx] not in alphabet:
+                    alphabet.append(word[idx])
+
             if p == "o":
                 correct_letters_wrong_location.append((word[idx], idx))
+
+                # Re-add mistakingly removed letters
+                if word[idx] not in alphabet:
+                    alphabet.append(word[idx])
+
             if p == "-":
-                if word[idx] in alphabet:
+                if word[idx] in alphabet and word[idx] not in [l for l, _ in correct_letters_right_location] and word[idx] not in [l for l, _ in correct_letters_wrong_location]:
                     alphabet.remove(word[idx])
 
     correct_letters_right_location = set(correct_letters_right_location)
@@ -83,7 +93,7 @@ def main():
             if word[idx] == letter:
                 return False
 
-        if not set([letter for letter, idx in correct_letters_wrong_location]).issubset(set(word)):
+        if not set([letter for letter, _ in correct_letters_wrong_location]+[letter for letter, _ in correct_letters_right_location]).issubset(set(word)):
             return False
 
         if not set(word).issubset(set(alphabet)):
@@ -99,7 +109,8 @@ def main():
     print("POSSIBLE SOLUTIONS")
     print("-"*50)
 
-    print("Using alphabet:", [alpha.upper() for alpha in alphabet])
+    print("Using alphabet:", end=" ")
+    print(*alphabet, sep=", ", end="\n\n")
 
     for word in sorted(possible_words):
         print(word.upper())
