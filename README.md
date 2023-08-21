@@ -10,6 +10,7 @@
 * [Spelling Bee (DE)](https://6mal5.com/wortify/)
 * [Spelling Bee (EN)](https://spellsbee.com/)
 * [Worldle (EN)](https://worldlegame.io/)
+* [Word Search (EN)](https://thewordsearch.org/)
 * [Globle (EN)](https://globle.org/)
 * [Flaggle (EN)](https://flagle.gg/)
 
